@@ -6,6 +6,8 @@ import { join } from 'path';
 import { BooksModule } from './books/books.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './books/book';
+import { UsersModule } from './users/users.module';
+import { User } from './users/user';
 
 @Module({
   imports: [
@@ -19,10 +21,11 @@ import { Book } from './books/book';
       username: 'root',
       password: '',
       database: 'nest_sample_app',
-      entities: [Book],
+      entities: [Book, User],
       synchronize: true,
     }),
     BooksModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
