@@ -1,5 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { newBookInput } from 'src/books/dto/newBook.input';
 import { newUserInput } from './dto/newUser.Input';
 import { User } from './user';
 import { UsersService } from './users.service';
@@ -31,4 +32,9 @@ export class UsersResolver {
   async removeUser(@Args({name: 'id', type: () => Int}) id: number){
     return this.usersService.remove(id);
   }
+
+  // @Mutation((returns) => User)
+  // addBooks(@Args('newBook') newBook: newBookInput): Promise<Book> {
+  //   return this.usersService.createBook(newBook)
+  // }
 }

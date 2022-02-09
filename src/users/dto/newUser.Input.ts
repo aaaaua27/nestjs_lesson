@@ -1,5 +1,6 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, ID, InputType } from "@nestjs/graphql";
 import { MaxLength } from "class-validator";
+import { Book } from "src/books/book";
 
 @InputType()
 export class newUserInput {
@@ -9,4 +10,7 @@ export class newUserInput {
 
   @Field()
   email: string;
+
+  @Field(type => [ID],{nullable: true})
+  books: Book[];
 }

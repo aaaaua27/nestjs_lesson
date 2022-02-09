@@ -17,6 +17,7 @@ export class BooksResolver {
   async getBook(@Args({ name: 'id', type: () => Int }) id: number) {
     const book = await this.booksService.findOneById(id);
     if (!book) {
+      this.booksService.getUser(book)
       throw new NotFoundException(id);
     }
     return book;
@@ -31,4 +32,10 @@ export class BooksResolver {
   async removeBook(@Args({ name: 'id', type: () => Int }) id: number) {
     return this.booksService.remove(id);
   }
+
+  // @Mutation((returns) => Book)
+  // async addBooks(@Args({name: 'userId', type: () => Int}) userId: number) {
+  //   return this.booksService.create(userId)
+  // }
+
 }
